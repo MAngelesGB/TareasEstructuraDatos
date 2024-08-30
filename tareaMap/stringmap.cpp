@@ -3,7 +3,11 @@
 #include <cstring> 
 #include<vector>
 #include<map>
+#include<cctype>
+#include<string>
 using namespace std; 
+
+
 
 int main(){
   /* 
@@ -25,15 +29,23 @@ int main(){
   int j = 1; 
 
   char str[]= "El sol brilla en el cielo, el sol da luz y calor, mientras las personas disfrutan del día. La gente va al parque, al parque donde el sol brilla más fuerte, y las familias pasan tiempo juntas. Los niños juegan en el parque, los niños ríen y corren, y el parque se llena de alegría. Las flores del parque también parecen más vivas, las flores se abren bajo el sol brillante. Al atardecer, el sol se oculta lentamente, y el parque se transforma en un lugar tranquilo.";
-  
+
+  //convertir el str en minusculas para evitar la diferenciacion por case sensitive
+  for(char &x:str){
+    x  = (char) tolower(x); 
+  }
+
+  /* Puntero para almacenar el string*/
+  char *rest = str; 
+
   /* Puntero para almacenar el valor */
   char *token; 
-  /* Puntero para almacenar el string*/
-  char *rest = str;
+  
   //Puntero para los delimitadores de los elementos
   const char *delimiters = " ,.";
 
-  while((token = strtok_r(rest,delimiters,&rest))){
+
+  while((token = strtok_r(rest,delimiters,&rest)) ){
     i = mpstr.find(token);
 
     if(i!=mpstr.end()){ 
